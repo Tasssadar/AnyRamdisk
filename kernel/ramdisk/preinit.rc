@@ -1,0 +1,27 @@
+on pre-init
+
+sysclktz 0
+
+loglevel 3
+
+# create system directories
+    mkdir /system
+    mkdir /data 0771 system system
+    mkdir /cache 0770 system cache
+# try to mount sdcard ext2 partition and theirs
+# system, data, dbdata, cache folders
+    mknod /dev/block/mmcblk0p5 179 2
+    mkdir /sdroot 0771 system system
+    mount ext4 /dev/block/mmcblk0p5 /sdroot nosuid nodev
+
+    mount yaffs2 /dev/block/mtdblock1 /system
+    mount yaffs2 /dev/block/mtdblock9 /data nosuid nodev
+    mount yaffs2 /dev/block/mtdblock8 /cache nosuid nodev
+
+    import_boot /sdroot/multirom/rom/boot
+    remove_rc_mounts
+    mount ext4 /sdroot/multirom/rom/system /system bind
+    mount ext4 /sdroot/multirom/rom/data /data bind
+    mount ext4 /sdroot/multirom/rom/cache /cache bind
+
+# after our job is completed, than run main init
