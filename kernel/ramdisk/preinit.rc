@@ -24,4 +24,6 @@ loglevel 7
     mount ext4 /sdroot/multirom/rom/data /data bind
     mount ext4 /sdroot/multirom/rom/cache /cache bind
 
+    symlink /main_init /sbin/ueventd
+
 # after our job is completed, than run main init
