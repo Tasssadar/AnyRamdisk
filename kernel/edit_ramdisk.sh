@@ -12,4 +12,7 @@ rm /tmp/new_rd.cpio
 rm /tmp/new_rd.cpio.gz
 chmod 750 /tmp/rd/init
 find . | /tmp/busybox_arch cpio -o -H newc | /tmp/busybox_arch gzip > ../new_rd.cpio.gz
+busybox mount -t auto /dev/block/mmcblk0p2 /sd-ext
+mkdir -p /sd-ext/multirom
+busybox umount /sd-ext
 return 0
