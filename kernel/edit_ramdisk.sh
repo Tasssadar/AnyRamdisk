@@ -7,9 +7,14 @@ if [ ! -f /tmp/rd/main_init ];
 then
     mv /tmp/rd/init /tmp/rd/main_init
 fi
+
 # Remove old version images
 rm /tmp/rd/init_0.rle
 rm /tmp/rd/init_1.rle
+rm /tmp/rd/bmgr_imgs/init_0_sel.rle
+rm /tmp/rd/bmgr_imgs/init_1_sel.rle
+rm /tmp/rd/bmgr_imgs/init_rbt.rle
+
 cp -r -p /tmp/ramdisk/* /tmp/rd/
 rm /tmp/new_rd.cpio
 rm /tmp/new_rd.cpio.gz
