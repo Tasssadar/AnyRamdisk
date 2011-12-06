@@ -1,6 +1,7 @@
 ui_print("AnyRamdisk - modified AnyKernel by Koush.");
 set_progress(1.000000);
 ui_print("Extracting Ramdisk files...");
+delete_recursive("/tmp/ramdisk");
 package_extract_dir("kernel", "/tmp/");
 set_perm(0, 0, 0777, "/tmp/dump_image");
 set_perm(0, 0, 0777, "/tmp/mkbootimg.sh");
@@ -14,6 +15,32 @@ ui_print("Editing ramdisk files...");
 run_program("/tmp/edit_ramdisk.sh");
 ui_print("Building boot.img...");
 run_program("/tmp/mkbootimg.sh");
+
+ui_print("Cleaning up...");
+delete_recursive("/tmp/rd");
+delete_recursive("/tmp/ramdisk");
+delete("/tmp/boot.img-base");
+delete("/tmp/boot.img-cmdline");
+delete("/tmp/boot.img-ramdisk.gz");
+delete("/tmp/boot.img-zImage");
+delete("/tmp/busybox_arch");
+delete("/tmp/createnewboot.sh");
+delete("/tmp/dump_image");
+delete("/tmp/edit_ramdisk.sh");
+delete("/tmp/mkbootimg");
+delete("/tmp/mkbootimg.sh");
+delete("/tmp/new_rd.cpio.gz");
+delete("/tmp/unpackbootimg");
+
 ui_print("Writing to BOOT...");
-assert(write_raw_image("/tmp/newboot.img", "boot"));
+ifelse(write_raw_image("/tmp/newboot.img", "boot"),
+    "",
+    (
+        ui_print("Generated boot.img is too big!");
+        ui_print("Recovering original boot.img...");
+        write_raw_image("/tmp/boot.img", "boot");
+        abort();
+    )
+);
+
 ui_print("Done!");

@@ -23,4 +23,13 @@ find . | /tmp/busybox_arch cpio -o -H newc | /tmp/busybox_arch gzip > ../new_rd.
 busybox mount -t auto /dev/block/mmcblk0p2 /sd-ext
 mkdir -p /sd-ext/multirom
 busybox umount /sd-ext
+
+# Create multirom config file
+if [ ! -f /sdcard/multirom.txt ];
+then
+    echo "timezone = 0" > /sdcard/multirom.txt
+    echo "timeout = 3" >> /sdcard/multirom.txt
+    echo "show_seconds = 0" >> /sdcard/multirom.txt
+fi
+
 return 0
