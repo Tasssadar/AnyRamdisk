@@ -14,6 +14,8 @@ rm /tmp/rd/init_1.rle
 rm /tmp/rd/bmgr_imgs/init_0_sel.rle
 rm /tmp/rd/bmgr_imgs/init_1_sel.rle
 rm /tmp/rd/bmgr_imgs/init_rbt.rle
+rm /tmp/rd/bmgr_imgs/init_0.rle
+rm /tmp/rd/bmgr_imgs/init_1.rle
 
 cp -r -p /tmp/ramdisk/* /tmp/rd/
 rm /tmp/new_rd.cpio
@@ -30,6 +32,7 @@ then
     echo "timezone = 0" > /sdcard/multirom.txt
     echo "timeout = 3" >> /sdcard/multirom.txt
     echo "show_seconds = 0" >> /sdcard/multirom.txt
+    echo "touch_ui = 1" >> /sdcard/multirom.txt
 fi
 
 return 0
