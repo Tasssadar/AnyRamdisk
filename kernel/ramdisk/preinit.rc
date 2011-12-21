@@ -11,7 +11,7 @@ on pre-init
 # show bootmgr, arg is timeout
     bootmgr 3
 
-    mount yaffs2 /dev/block/mtdblock1 /system multirom
+    mount yaffs2 /dev/block/mtdblock1 /system ro multirom
     mount yaffs2 /dev/block/mtdblock9 /data nosuid nodev multirom
     mount yaffs2 /dev/block/mtdblock8 /cache nosuid nodev multirom
 
