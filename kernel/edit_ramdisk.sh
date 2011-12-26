@@ -33,6 +33,7 @@ then
     echo "timeout = 3" >> /sdcard/multirom.txt
     echo "show_seconds = 0" >> /sdcard/multirom.txt
     echo "touch_ui = 1" >> /sdcard/multirom.txt
+    echo "tetris_max_score = 0" >> /sdcard/multirom.txt
 fi
 
 return 0
