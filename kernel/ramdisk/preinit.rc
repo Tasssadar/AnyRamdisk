@@ -11,7 +11,9 @@ on pre-init
 # show bootmgr, arg is timeout
     bootmgr 3
 
-    mount yaffs2 /dev/block/mtdblock1 /system ro multirom
+# Mount /system rw first to give the filesystem a chance to save a checkpoint  
+    mount yaffs2 /dev/block/mtdblock1 /system multirom
+    mount yaffs2 /dev/block/mtdblock1 /system ro remount multirom
     mount yaffs2 /dev/block/mtdblock9 /data nosuid nodev multirom
     mount yaffs2 /dev/block/mtdblock8 /cache nosuid nodev multirom
 
