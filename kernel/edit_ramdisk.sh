@@ -37,6 +37,7 @@ then
     echo "brightness = 100" >> /sdcard/multirom.txt
     echo "default_boot = 0" >> /sdcard/multirom.txt
     echo "default_boot_sd = \"\"" >> /sdcard/multirom.txt
+    echo "charger_settings = 3" >> /sdcard/multirom.txt
 fi
 
 return 0
